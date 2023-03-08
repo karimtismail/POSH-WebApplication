@@ -1,26 +1,4 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!doctype html>
-<html class="no-js" lang="en">
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="description" content=" "/>
-    <!-- Title -->
-    <title>Posh - Auto Parts eCommerce Bootstrap 4 Html Template</title>
-    <!-- Favicon  -->
-    <link rel="shortcut icon" href="../images/fevicon.png"/>
-
-    <!-- *********** CSS Files *********** -->
-    <!-- Plugin CSS -->
-    <link rel="stylesheet" href="../style/plugins.css"/>
-    <!-- Styles CSS -->
-    <link rel="stylesheet" href="../style/styles.css"/>
-    <link rel="stylesheet" href="../style/responsive.css"/>
-</head>
-
-<body class="template-index">
 <!-- Start Page Loader -->
 <div class="page-loading"></div>
 <!-- End Page Loader -->
@@ -117,4 +95,3 @@
         </div>
     </header>
     <!-- End Header Section -->
-</div>

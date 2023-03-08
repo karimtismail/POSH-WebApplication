@@ -4,6 +4,7 @@ import com.posh.model.Product;
 import com.posh.utils.CategotyEnum;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class FakeProductRepository {
@@ -11,28 +12,29 @@ public class FakeProductRepository {
     public FakeProductRepository() {
         for (int i = 0; i <= 5; i++) {
             products.add(new Product(i, "o" + i, "5/10", CategotyEnum.OIL.getId(), "safsafasfasf", 5,
-                    55 + i, "5454", "BRX", "ss", "EGYPT","image"));
+                    55 + i, "5454", "BRX", "ss", "EGYPT","b.jpeg"));
         }
 
         for (int i = 0; i <= 5; i++) {
             products.add(new Product(i, "b" + i, "5/10", CategotyEnum.BATTERY.getId(), "safsafasfasf", 5,
-                    55 + i, "5454", "BRX", "ss", "EGYPT", "image"));        }
+                    55 + i, "5454", "BRX", "ss", "EGYPT", "o.jpeg"));        }
 
         for (int i = 0; i <= 5; i++) {
             products.add(new Product(i, "p" + i, "5/10", CategotyEnum.PLUG.getId(), "safsafasfasf", 5,
-                    55 + i, "5454", "BRX", "ss", "EGYPT","image"));        }
+                    55 + i, "5454", "BRX", "ss", "EGYPT","h.jpeg"));        }
 
         for (int i = 0; i <= 5; i++) {
             products.add(new Product(i, "l" + i, "5/10", CategotyEnum.LIQUID.getId(), "safsafasfasf", 5,
-                    55 + i, "5454", "BRX", "ss", "EGYPT","image"));        }
+                    55 + i, "5454", "BRX", "ss", "EGYPT","b.jpeg"));        }
 
         for (int i = 0; i <= 5; i++) {
             products.add(new Product(i, "t" + i, "5/10", CategotyEnum.TIER.getId(), "safsafasfasf", 5,
-                    55 + i, "5454", "BRX", "ss", "EGYPT","image"));
+                    55 + i, "5454", "BRX", "ss", "EGYPT","h.jpeg"));
         }
     }
 
     public List<Product> getProducts() {
+        Collections.shuffle(products);
         return products;
     }
 
