@@ -5,21 +5,19 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "cart", schema = "posh", catalog = "")
 public class CartEntity {
-    private int id;
+    private Integer id;
     private Integer productId;
     private Integer quantity;
     private Integer userId;
-    private ProductsEntity productsByProductId;
-    private UsersEntity usersByUserId;
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id", nullable = false)
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -60,7 +58,7 @@ public class CartEntity {
 
         CartEntity that = (CartEntity) o;
 
-        if (id != that.id) return false;
+        if (id != null ? !id.equals(that.id) : that.id != null) return false;
         if (productId != null ? !productId.equals(that.productId) : that.productId != null) return false;
         if (quantity != null ? !quantity.equals(that.quantity) : that.quantity != null) return false;
         if (userId != null ? !userId.equals(that.userId) : that.userId != null) return false;
@@ -70,30 +68,10 @@ public class CartEntity {
 
     @Override
     public int hashCode() {
-        int result = id;
+        int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (productId != null ? productId.hashCode() : 0);
         result = 31 * result + (quantity != null ? quantity.hashCode() : 0);
         result = 31 * result + (userId != null ? userId.hashCode() : 0);
         return result;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "product_id", referencedColumnName = "product_id")
-    public ProductsEntity getProductsByProductId() {
-        return productsByProductId;
-    }
-
-    public void setProductsByProductId(ProductsEntity productsByProductId) {
-        this.productsByProductId = productsByProductId;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
-    public UsersEntity getUsersByUserId() {
-        return usersByUserId;
-    }
-
-    public void setUsersByUserId(UsersEntity usersByUserId) {
-        this.usersByUserId = usersByUserId;
     }
 }

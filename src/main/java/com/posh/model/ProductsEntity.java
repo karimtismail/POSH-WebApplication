@@ -2,12 +2,10 @@ package com.posh.model;
 
 import jakarta.persistence.*;
 
-import java.util.Collection;
-
 @Entity
 @Table(name = "products", schema = "posh", catalog = "")
 public class ProductsEntity {
-    private int productId;
+    private Integer productId;
     private String name;
     private String description;
     private String sku;
@@ -18,18 +16,15 @@ public class ProductsEntity {
     private String madeIn;
     private String category;
     private String image;
-    private Collection<CartEntity> cartsByProductId;
-    private Collection<ItemsListEntity> itemsListsByProductId;
-    private Collection<ProductCategoriesEntity> productCategoriesByProductId;
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "product_id", nullable = false)
-    public int getProductId() {
+    public Integer getProductId() {
         return productId;
     }
 
-    public void setProductId(int productId) {
+    public void setProductId(Integer productId) {
         this.productId = productId;
     }
 
@@ -140,7 +135,7 @@ public class ProductsEntity {
 
         ProductsEntity that = (ProductsEntity) o;
 
-        if (productId != that.productId) return false;
+        if (productId != null ? !productId.equals(that.productId) : that.productId != null) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
         if (description != null ? !description.equals(that.description) : that.description != null) return false;
         if (sku != null ? !sku.equals(that.sku) : that.sku != null) return false;
@@ -157,7 +152,7 @@ public class ProductsEntity {
 
     @Override
     public int hashCode() {
-        int result = productId;
+        int result = productId != null ? productId.hashCode() : 0;
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (description != null ? description.hashCode() : 0);
         result = 31 * result + (sku != null ? sku.hashCode() : 0);
@@ -169,32 +164,5 @@ public class ProductsEntity {
         result = 31 * result + (category != null ? category.hashCode() : 0);
         result = 31 * result + (image != null ? image.hashCode() : 0);
         return result;
-    }
-
-    @OneToMany(mappedBy = "productsByProductId")
-    public Collection<CartEntity> getCartsByProductId() {
-        return cartsByProductId;
-    }
-
-    public void setCartsByProductId(Collection<CartEntity> cartsByProductId) {
-        this.cartsByProductId = cartsByProductId;
-    }
-
-    @OneToMany(mappedBy = "productsByProductId")
-    public Collection<ItemsListEntity> getItemsListsByProductId() {
-        return itemsListsByProductId;
-    }
-
-    public void setItemsListsByProductId(Collection<ItemsListEntity> itemsListsByProductId) {
-        this.itemsListsByProductId = itemsListsByProductId;
-    }
-
-    @OneToMany(mappedBy = "productsByProductId")
-    public Collection<ProductCategoriesEntity> getProductCategoriesByProductId() {
-        return productCategoriesByProductId;
-    }
-
-    public void setProductCategoriesByProductId(Collection<ProductCategoriesEntity> productCategoriesByProductId) {
-        this.productCategoriesByProductId = productCategoriesByProductId;
     }
 }

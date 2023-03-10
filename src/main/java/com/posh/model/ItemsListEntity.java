@@ -5,21 +5,19 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "items_list", schema = "posh", catalog = "")
 public class ItemsListEntity {
-    private int id;
+    private Integer id;
     private Integer orderId;
     private Integer productId;
     private Integer quantity;
-    private OrdersEntity ordersByOrderId;
-    private ProductsEntity productsByProductId;
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id", nullable = false)
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -60,7 +58,7 @@ public class ItemsListEntity {
 
         ItemsListEntity that = (ItemsListEntity) o;
 
-        if (id != that.id) return false;
+        if (id != null ? !id.equals(that.id) : that.id != null) return false;
         if (orderId != null ? !orderId.equals(that.orderId) : that.orderId != null) return false;
         if (productId != null ? !productId.equals(that.productId) : that.productId != null) return false;
         if (quantity != null ? !quantity.equals(that.quantity) : that.quantity != null) return false;
@@ -70,30 +68,10 @@ public class ItemsListEntity {
 
     @Override
     public int hashCode() {
-        int result = id;
+        int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (orderId != null ? orderId.hashCode() : 0);
         result = 31 * result + (productId != null ? productId.hashCode() : 0);
         result = 31 * result + (quantity != null ? quantity.hashCode() : 0);
         return result;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "order_id", referencedColumnName = "id")
-    public OrdersEntity getOrdersByOrderId() {
-        return ordersByOrderId;
-    }
-
-    public void setOrdersByOrderId(OrdersEntity ordersByOrderId) {
-        this.ordersByOrderId = ordersByOrderId;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "product_id", referencedColumnName = "product_id")
-    public ProductsEntity getProductsByProductId() {
-        return productsByProductId;
-    }
-
-    public void setProductsByProductId(ProductsEntity productsByProductId) {
-        this.productsByProductId = productsByProductId;
     }
 }

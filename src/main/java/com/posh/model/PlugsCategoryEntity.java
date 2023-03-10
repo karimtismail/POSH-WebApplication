@@ -2,23 +2,21 @@ package com.posh.model;
 
 import jakarta.persistence.*;
 
-import java.util.Collection;
-
 @Entity
 @Table(name = "plugs_category", schema = "posh", catalog = "")
 public class PlugsCategoryEntity {
-    private int id;
+    private Integer id;
     private String carName;
-    private Collection<CategoriesEntity> categoriesById;
+    private Integer prodId;
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id", nullable = false)
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -32,6 +30,16 @@ public class PlugsCategoryEntity {
         this.carName = carName;
     }
 
+    @Basic
+    @Column(name = "prod_id", nullable = true)
+    public Integer getProdId() {
+        return prodId;
+    }
+
+    public void setProdId(Integer prodId) {
+        this.prodId = prodId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -39,25 +47,18 @@ public class PlugsCategoryEntity {
 
         PlugsCategoryEntity that = (PlugsCategoryEntity) o;
 
-        if (id != that.id) return false;
+        if (id != null ? !id.equals(that.id) : that.id != null) return false;
         if (carName != null ? !carName.equals(that.carName) : that.carName != null) return false;
+        if (prodId != null ? !prodId.equals(that.prodId) : that.prodId != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = id;
+        int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (carName != null ? carName.hashCode() : 0);
+        result = 31 * result + (prodId != null ? prodId.hashCode() : 0);
         return result;
-    }
-
-    @OneToMany(mappedBy = "plugsCategoryByPlugsId")
-    public Collection<CategoriesEntity> getCategoriesById() {
-        return categoriesById;
-    }
-
-    public void setCategoriesById(Collection<CategoriesEntity> categoriesById) {
-        this.categoriesById = categoriesById;
     }
 }

@@ -2,24 +2,22 @@ package com.posh.model;
 
 import jakarta.persistence.*;
 
-import java.util.Collection;
-
 @Entity
 @Table(name = "batteries_category", schema = "posh", catalog = "")
 public class BatteriesCategoryEntity {
-    private int id;
+    private Integer id;
     private Integer volt;
     private Integer ampere;
-    private Collection<CategoriesEntity> categoriesById;
+    private Integer prodId;
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id", nullable = false)
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -43,6 +41,16 @@ public class BatteriesCategoryEntity {
         this.ampere = ampere;
     }
 
+    @Basic
+    @Column(name = "prod_id", nullable = true)
+    public Integer getProdId() {
+        return prodId;
+    }
+
+    public void setProdId(Integer prodId) {
+        this.prodId = prodId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -50,27 +58,20 @@ public class BatteriesCategoryEntity {
 
         BatteriesCategoryEntity that = (BatteriesCategoryEntity) o;
 
-        if (id != that.id) return false;
+        if (id != null ? !id.equals(that.id) : that.id != null) return false;
         if (volt != null ? !volt.equals(that.volt) : that.volt != null) return false;
         if (ampere != null ? !ampere.equals(that.ampere) : that.ampere != null) return false;
+        if (prodId != null ? !prodId.equals(that.prodId) : that.prodId != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = id;
+        int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (volt != null ? volt.hashCode() : 0);
         result = 31 * result + (ampere != null ? ampere.hashCode() : 0);
+        result = 31 * result + (prodId != null ? prodId.hashCode() : 0);
         return result;
-    }
-
-    @OneToMany(mappedBy = "batteriesCategoryByBatteriesId")
-    public Collection<CategoriesEntity> getCategoriesById() {
-        return categoriesById;
-    }
-
-    public void setCategoriesById(Collection<CategoriesEntity> categoriesById) {
-        this.categoriesById = categoriesById;
     }
 }
