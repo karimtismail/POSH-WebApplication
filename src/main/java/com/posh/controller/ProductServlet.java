@@ -1,7 +1,8 @@
 package com.posh.controller;
 
 import com.google.gson.Gson;
-import com.posh.repository.FakeProductRepository;
+import com.posh.model.ProductsEntity;
+import com.posh.repository.ProductRepository;
 import com.posh.utils.CategotyEnum;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -18,9 +19,9 @@ public class ProductServlet extends HttpServlet {
         CategotyEnum category = CategotyEnum.valueOf(req.getParameter("category"));
         String products = null;
         if (category == CategotyEnum.ALL) {
-            products = gson.toJson(new FakeProductRepository().getProducts());
+            products = gson.toJson(new ProductRepository().getProducts());
         } else {
-            products = gson.toJson(new FakeProductRepository().getProductsByCategory(category));
+            products = gson.toJson(new ProductRepository().getProductsByCategory(category));
         }
         System.out.println(products);
         resp.getWriter().write(products);
@@ -28,6 +29,11 @@ public class ProductServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        //TODO : update or create new product with post request
+
+        Gson gson = new Gson();
+        String productJson = req.getParameter("product");
+        ProductsEntity product = gson.fromJson(productJson, ProductsEntity.class);
+        System.out.println(product.getProductId());
+        new ProductRepository().addProduct(product);
     }
 }
