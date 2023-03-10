@@ -1,0 +1,33 @@
+<persistence xmlns="https://jakarta.ee/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence
+https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd"
+             version="3.0">
+
+
+    <persistence-unit name="posh" transaction-type="RESOURCE_LOCAL">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <class>com.posh.model.BatteriesCategoryEntity</class>
+        <class>com.posh.model.CartEntity</class>
+        <class>com.posh.model.CategoriesEntity</class>
+        <class>com.posh.model.ItemsListEntity</class>
+        <class>com.posh.model.LiquidCategoryEntity</class>
+        <class>com.posh.model.OilCategoryEntity</class>
+        <class>com.posh.model.OrdersEntity</class>
+        <class>com.posh.model.PlugsCategoryEntity</class>
+        <class>com.posh.model.ProductCategoriesEntity</class>
+        <class>com.posh.model.ProductsEntity</class>
+        <class>com.posh.model.TiresCategoryEntity</class>
+        <class>com.posh.model.UsersEntity</class>
+        <properties>
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/posh"/>
+            <property name="jakarta.persistence.jdbc.user" value="root"/>
+            <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+            <property name="jakarta.persistence.jdbc.password" value="root"/>
+            <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/posh"/>
+            <property name="hibernate.connection.driver_class" value="com.mysql.cj.jdbc.Driver"/>
+            <property name="hibernate.connection.username" value="root"/>
+            <property name="hibernate.connection.password" value="root"/>
+        </properties>
+    </persistence-unit>
+</persistence>
