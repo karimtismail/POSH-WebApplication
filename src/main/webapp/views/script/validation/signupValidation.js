@@ -86,35 +86,35 @@ $(document).ready(function (event) {
         validateForm.element(this);
     });
 
-    // $("#registerFormHandler").click(function () {
-    //
-    //     let firstName = $("#firstName").val();
-    //     let lastName = $("#lastName").val();
-    //     let email = $("#email").val();
-    //     let dob = $("#dob").val();
-    //     let password = $("#password").val();
-    //     let confirmPassword = $("#confirmPassword").val();
-    //     let phoneNumber = $("#phoneNumber").val();
-    //     let genderSelected = $("#genderSelected option:selected").text();
-    //     let address = $("#address").val();
-    //     let citySelected = $("#citySelected option:selected").text();
-    //
-    //     if ($("#register-form").valid()) {
-    //         console.log("congratulaiton...");
-    //         $.ajax({
-    //             type: "POST",
-    //             url: "http://localhost:9191/posh/register",
-    //             data: $("#register-form").serialize(),
-    //             processData: false,
-    //             success: function (data) {
-    //                 console.log(data.name);
-    //             },
-    //             error: function () {
-    //                 console.log("error in ajax");
-    //             }
-    //         });
-    //     } else {
-    //         console.log("falid...");
-    //     }
-    // });
+    $("#registerFormHandler").click(function () {
+
+        let firstName = $("#firstName").val();
+        let lastName = $("#lastName").val();
+        let email = $("#email").val();
+        let dob = $("#dob").val();
+        let password = $("#password").val();
+        let confirmPassword = $("#confirmPassword").val();
+        let phoneNumber = $("#phoneNumber").val();
+        let genderSelected = $("#genderSelected option:selected").text();
+        let address = $("#address").val();
+        let citySelected = $("#citySelected option:selected").text();
+
+        if ($("#register-form").valid()) {
+            console.log("congratulaiton...");
+            $.ajax({
+                type: "POST",
+                url: "http://localhost:9191/posh/register",
+                data: $("#register-form").serialize(),
+                processData: false,
+                success: function (data) {
+                    console.log(data.name);
+                },
+                error: function () {
+                    console.log("error in ajax");
+                }
+            });
+        } else {
+            console.log("falid...");
+        }
+    });
 });

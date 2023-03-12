@@ -48,7 +48,7 @@
             <!-- Start Slidershow Banner -->
             <div class="slideshow slideshow-banner">
                 <div class="single-slide slider-height bg-style d-flex align-items-center"
-                     style="background-image:url(views/images/slider/slider1.jpg);">
+                     style="background-image:url(/views/images/slider/slider1.jpg);">
                     <div class="container slideshow-details">
                         <h3>Faster & Secure Find Your Auto Parts</h3>
                         <p>High Performance & Outstanding Technology Combined</p>
@@ -56,7 +56,7 @@
                     </div>
                 </div>
                 <div class="single-slide slider-height bg-style d-flex align-items-center"
-                     style="background-image:url(views/images/slider/batteries.jpg);">
+                     style="background-image:url(/views/images/slider/batteries.jpg);">
                     <div class="container slideshow-details">
                         <h3>Shop Parts With Confidence</h3>
                         <p>Always The Lowest Price. Guaranteed.</p>
@@ -64,7 +64,7 @@
                     </div>
                 </div>
                 <div class="single-slide slider-height bg-style d-flex align-items-center"
-                     style="background-image:url(views/images/slider/tire.jpg);">
+                     style="background-image:url(/views/images/slider/tire.jpg);">
                     <div class="container slideshow-details">
                         <h3>The Automotive Interior Specialist</h3>
                         <p>Luxury Car Seat Covers Protect Your Seats</p>
