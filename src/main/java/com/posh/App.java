@@ -2,6 +2,10 @@ package com.posh;
 
 import java.io.*;
 
+import com.posh.model.ProductsEntity;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
@@ -24,5 +28,17 @@ public class App extends HttpServlet {
     }
 
     public void destroy() {
+    }
+
+    public static class Main {
+        public static void main(String[] args) {
+            EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("posh");
+            EntityManager entityManager = entityManagerFactory.createEntityManager();
+            ProductsEntity c = new ProductsEntity();
+            entityManager.getTransaction().begin();
+            entityManager.persist(c);
+            entityManager.getTransaction().commit();
+
+        }
     }
 }

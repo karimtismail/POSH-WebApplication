@@ -3,7 +3,7 @@ package com.posh.controller;
 import com.google.gson.Gson;
 import com.posh.model.ProductsEntity;
 import com.posh.repository.ProductRepository;
-import com.posh.utils.CategotyEnum;
+import com.posh.utils.enums.CategotyEnum;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;

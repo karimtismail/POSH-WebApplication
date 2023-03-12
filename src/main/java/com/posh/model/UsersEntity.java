@@ -2,12 +2,17 @@ package com.posh.model;
 
 import jakarta.persistence.*;
 
-import java.sql.Date;
+import java.io.Serial;
+import java.io.Serializable;
+import java.util.Date;
 
 @Entity
-@Table(name = "users", schema = "posh", catalog = "")
-public class UsersEntity {
+@Table(name = "users", schema = "posh")
+public class UsersEntity implements Serializable {
     private Integer id;
+    @Serial
+    private static final long serialVersionUID = 1L;
+
     private String firstName;
     private String lastName;
     private String email;
@@ -51,7 +56,7 @@ public class UsersEntity {
     }
 
     @Basic
-    @Column(name = "email", nullable = false, length = 30)
+    @Column(name = "email", nullable = false, length = 30, unique = true)
     public String getEmail() {
         return email;
     }
@@ -101,7 +106,7 @@ public class UsersEntity {
     }
 
     @Basic
-    @Column(name = "address", nullable = false, length = 45)
+    @Column(name = "address", nullable = true, length = 45)
     public String getAddress() {
         return address;
     }
@@ -121,7 +126,7 @@ public class UsersEntity {
     }
 
     @Basic
-    @Column(name = "credit_limit", nullable = false)
+    @Column(name = "credit_limit", nullable = true)
     public Integer getCreditLimit() {
         return creditLimit;
     }

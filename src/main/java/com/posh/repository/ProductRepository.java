@@ -1,7 +1,8 @@
 package com.posh.repository;
 
 import com.posh.model.ProductsEntity;
-import com.posh.utils.CategotyEnum;
+import com.posh.utils.enums.CategotyEnum;
+import com.posh.utils.EntityManagerFactoryUtil;
 import jakarta.persistence.EntityManager;
 
 import java.util.ArrayList;
@@ -24,7 +25,7 @@ public class ProductRepository {
 
     public void addProduct(ProductsEntity product) {
         System.out.println(product.getBrand());
-        EntityManager entityManager = new EntityFactory().getEntityManagerFactory().createEntityManager();
+        EntityManager entityManager = EntityManagerFactoryUtil.getEntityManagerFactory().createEntityManager();
         entityManager.getTransaction().begin();
         entityManager.merge(product);
         entityManager.getTransaction().commit();
@@ -32,7 +33,7 @@ public class ProductRepository {
     }
 
     public void deleteProductById(ProductsEntity product) {
-        EntityManager entityManager = new EntityFactory().getEntityManagerFactory().createEntityManager();
+        EntityManager entityManager = EntityManagerFactoryUtil.getEntityManagerFactory().createEntityManager();
         entityManager.remove(product);
     }
 

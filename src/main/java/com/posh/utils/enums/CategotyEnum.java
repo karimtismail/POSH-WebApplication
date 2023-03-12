@@ -1,4 +1,4 @@
-package com.posh.utils;
+package com.posh.utils.enums;
 
 public enum CategotyEnum {
     OIL("oil",1),
