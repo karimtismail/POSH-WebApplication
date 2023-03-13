@@ -1,4 +1,6 @@
 package com.posh.utils;
 
-public class Mapper {
+public class Mapper<T> {
+
+
 }

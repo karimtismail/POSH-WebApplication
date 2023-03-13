@@ -21,7 +21,7 @@
      <script src=http://code.jquery.com/jquery-latest.min.js></script>
  </head>
 
-    <body onload = "loadProducts();" class="template-product-grid-leftsidebar">
+    <body onload = "loadProducts('ALL');" class="template-product-grid-leftsidebar">
     <%@include file="includes/header.jsp" %>
 
         <!-- Start Page Loader -->
@@ -103,30 +103,11 @@
                                         <div class="block-item categories">
                                             <h4 class="sub-title">Categories</h4>
                                             <ul class="block-details list sidebar-collections">
-                                                <li class="cat-submenu-link"><a href="#;">Drills & Mixers</a>
-                                                    <ul class="cat-submenu-list">
-                                                        <li class="item"><a href="#">Portable Electric</a></li>
-                                                        <li class="item"><a href="#">Gas Hand-Held</a></li>
-                                                        <li class="item"><a href="#">Mega Mixing</a></li>
-                                                        <li class="item more"><a href="#">View More Category</a></li>
-                                                    </ul>
-                                                </li>
-                                                <li class="cat-submenu-link"><a href="#;">Cordless Screwdrivers</a>
-                                                    <ul class="cat-submenu-list">
-                                                        <li class="item"><a href="#">Portable Electric</a></li>
-                                                        <li class="item"><a href="#">Gas Hand-Held</a></li>
-                                                        <li class="item"><a href="#">Mega Mixing</a></li>
-                                                        <li class="item more"><a href="">View More Category</a></li>
-                                                    </ul>
-                                                </li>
-                                                <li><a href="#">Screwdrivers</a></li>
-                                                <li><a href="#">Wrenches</a></li>
-                                                <li><a href="#">Grinding Machines</a></li>
-                                                <li><a href="#">Milling Cutters</a></li>
-                                                <li><a href="#">Electric Spray Guns</a></li>
-                                                <li><a href="#">Jigsaws</a></li>
-                                                <li><a href="#">Jackhammers</a>
-                                                <li class="item more"><a href="">View More Category</a></li>
+                                                <li><a onclick="loadProducts('OIL');">Oil</a></li>
+                                                <li><a onclick="loadProducts('LIQUID');">Liquid</a></li>
+                                                <li><a onclick="loadProducts('BATTERY');">Batteries</a></li>
+                                                <li><a onclick="loadProducts('PLUG');">plugs</a></li>
+                                                <li><a onclick="loadProducts('TIER');">Tiers</a></li>
                                             </ul>
                                         </div>
                                         <!-- End Categories -->
@@ -144,21 +125,6 @@
                                             </div>
                                         </div>
                                         <!-- End Price -->
-                                        <!-- Start Size -->
-                                        <div class="block-item size">
-                                            <h4 class="sub-title">Size</h4>
-                                            <div class="block-details product-size">
-                                                <ul class="d-flex flex-row align-items-center color-item">
-                                                    <li class="x active"><span>X</span></li>
-                                                    <li class="xl"><span>XL</span></li>
-                                                    <li class="l"><span>L</span></li>
-                                                    <li class="m"><span>M</span></li>
-                                                    <li class="s"><span>S</span></li>
-                                                    <li class="s"><span>XXL</span></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <!-- End Size -->
                                         <!-- Start Brand -->
                                         <div class="block-item brand">
                                             <h4 class="sub-title">Brand</h4>
@@ -278,7 +244,7 @@
 
                                     <!-- Start Load More Button -->
                                     <div class="product-readmore text-center">
-                                        <button type="submit" class="btn btn-secondary">Load More</button>
+                                        <button onclick = "loadProducts('ALL');" type="button" class="btn btn-secondary">Load More</button>
                                     </div>
                                     <!-- End Load More Button -->
                                 </div>

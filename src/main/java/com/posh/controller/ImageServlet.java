@@ -14,7 +14,7 @@ public class ImageServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("image/jpeg");
         String imageName = req.getParameter("image");
-        String fileDirectory = "";
+        String fileDirectory = "C:\\Users\\Gmoaa\\Desktop\\server\\";
         response.setHeader("Content-Disposition", "attachment; filename=\"image.jpg\"");
         File file = new File(fileDirectory + imageName);
         try (FileInputStream fileOutputStream = new FileInputStream(file)) {

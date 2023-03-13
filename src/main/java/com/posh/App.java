@@ -1,28 +1,26 @@
 package com.posh;
 
 import java.io.*;
+import java.util.Set;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.posh.model.Category;
+import com.posh.repository.UserProductRepository;
 
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
+//@WebServlet(name = "helloServlet", value = "/hello-servlet")
 
-@WebServlet(name = "helloServlet", value = "/hello-servlet")
-public class App extends HttpServlet {
-    private String message;
+public class App {
 
-    public void init() {
-        message = "Hello World!";
-    }
+    public static void main(String[] args) {
+        Gson gson = new GsonBuilder()
+                .excludeFieldsWithoutExposeAnnotation()
+                .create();
 
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.setContentType("text/html");
-
-        // Hello
-        PrintWriter out = response.getWriter();
-        out.println("<html><body>");
-        out.println("<h1>" + message + "</h1>");
-        out.println("</body></html>");
-    }
-
-    public void destroy() {
+        System.out.println(gson.toJson(UserProductRepository.getInstance().getProductByCategory(1)));
+        
+        System.out.println("main is working");
     }
 }

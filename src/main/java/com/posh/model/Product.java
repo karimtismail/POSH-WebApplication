@@ -1,128 +1,205 @@
 package com.posh.model;
 
-public class Product {
-    private int product_id;
-    private String product_name;
-    private String expire_Date;
-    private int category_id;
-    private String product_Description;
-    private int product_count;
-    private int price;
-    private String product_skun;
-    private String product_vendor;
-    private String product_Brand;
-    private String product_industry;
-    private String product_image;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
 
-    public Product(int product_id, String product_name, String expire_Date, int category_id, String product_Description, int product_count, int price, String product_skun, String product_vendor, String product_Brand, String product_industry, String product_image) {
-        this.product_id = product_id;
-        this.product_name = product_name;
-        this.expire_Date = expire_Date;
-        this.category_id = category_id;
-        this.product_Description = product_Description;
-        this.product_count = product_count;
+import static jakarta.persistence.GenerationType.IDENTITY;
+
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
+
+import java.math.BigInteger;
+import java.util.HashSet;
+import java.util.Set;
+
+import com.google.gson.annotations.Expose;
+
+
+@Entity
+@Table(name = "products"
+        , catalog = "posh"
+        , uniqueConstraints = @UniqueConstraint(columnNames = "sku")
+)
+public class Product implements java.io.Serializable {
+    @Expose
+    private Integer productId;
+    @Expose
+    private Category category;
+    @Expose
+    private String name;
+    @Expose
+    private String description;
+    @Expose
+    private String sku;
+    @Expose
+    private BigInteger price;
+    @Expose
+    private Integer quantity;
+    @Expose
+    private String vendor;
+    @Expose
+    private String brand;
+    @Expose
+    private String madeIn;
+    @Expose
+    private String image;
+    private Set<Orderitem> orderItems = new HashSet<>(0);
+    private Set<Cartitem> cartItems = new HashSet<>(0);
+
+    public Product() {
+    }
+
+    public Product(Category category, String name, String description, String sku, BigInteger price, Integer quantity, String vendor, String brand, String madeIn, String image, Set<Orderitem> orderItems, Set<Cartitem> cartItems) {
+        this.category = category;
+        this.name = name;
+        this.description = description;
+        this.sku = sku;
         this.price = price;
-        this.product_skun = product_skun;
-        this.product_vendor = product_vendor;
-        this.product_Brand = product_Brand;
-        this.product_industry = product_industry;
-        this.product_image = product_image;
-
+        this.quantity = quantity;
+        this.vendor = vendor;
+        this.brand = brand;
+        this.madeIn = madeIn;
+        this.image = image;
+        this.orderItems = orderItems;
+        this.cartItems = cartItems;
     }
 
-    public int getProduct_id() {
-        return product_id;
+    @Id
+    @GeneratedValue(strategy = IDENTITY)
+    @Column(name = "product_id", unique = true, nullable = false)
+    public Integer getProductId() {
+        return this.productId;
     }
 
-    public void setProduct_id(int product_id) {
-        this.product_id = product_id;
+    public void setProductId(Integer productId) {
+        this.productId = productId;
     }
 
-    public String getProduct_name() {
-        return product_name;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "category_id")
+    public Category getCategory() {
+        return this.category;
     }
 
-    public void setProduct_name(String product_name) {
-        this.product_name = product_name;
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
-    public String getExpire_Date() {
-        return expire_Date;
+
+    @Column(name = "name", length = 45)
+    public String getName() {
+        return this.name;
     }
 
-    public void setExpire_Date(String expire_Date) {
-        this.expire_Date = expire_Date;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getProduct_Description() {
-        return product_Description;
+
+    @Column(name = "description", length = 100)
+    public String getDescription() {
+        return this.description;
     }
 
-    public void setProduct_Description(String product_Description) {
-        this.product_Description = product_Description;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public int getProduct_count() {
-        return product_count;
+
+    @Column(name = "sku", unique = true, length = 10)
+    public String getSku() {
+        return this.sku;
     }
 
-    public void setProduct_count(int product_count) {
-        this.product_count = product_count;
+    public void setSku(String sku) {
+        this.sku = sku;
     }
 
-    public int getPrice() {
-        return price;
+
+    @Column(name = "price", precision = 20, scale = 0)
+    public BigInteger getPrice() {
+        return this.price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(BigInteger price) {
         this.price = price;
     }
 
-    public String getProduct_skun() {
-        return product_skun;
+
+    @Column(name = "quantity")
+    public Integer getQuantity() {
+        return this.quantity;
     }
 
-    public void setProduct_skun(String product_skun) {
-        this.product_skun = product_skun;
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
     }
 
-    public String getProduct_vendor() {
-        return product_vendor;
+
+    @Column(name = "vendor", length = 45)
+    public String getVendor() {
+        return this.vendor;
     }
 
-    public void setProduct_vendor(String product_vendor) {
-        this.product_vendor = product_vendor;
+    public void setVendor(String vendor) {
+        this.vendor = vendor;
     }
 
-    public String getProduct_Brand() {
-        return product_Brand;
+
+    @Column(name = "brand", length = 45)
+    public String getBrand() {
+        return this.brand;
     }
 
-    public void setProduct_Brand(String product_Brand) {
-        this.product_Brand = product_Brand;
+    public void setBrand(String brand) {
+        this.brand = brand;
     }
 
-    public String getProduct_industry() {
-        return product_industry;
+
+    @Column(name = "made_in", length = 45)
+    public String getMadeIn() {
+        return this.madeIn;
     }
 
-    public void setProduct_industry(String product_industry) {
-        this.product_industry = product_industry;
+    public void setMadeIn(String madeIn) {
+        this.madeIn = madeIn;
     }
 
-    public int getCategory_id() {
-        return category_id;
+
+    @Column(name = "image", length = 50)
+    public String getImage() {
+        return this.image;
     }
 
-    public void setCategory_id(int category_id) {
-        this.category_id = category_id;
+    public void setImage(String image) {
+        this.image = image;
     }
 
-    public String getProduct_image() {
-        return product_image;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "products")
+    public Set<Orderitem> getOrderItems() {
+        return this.orderItems;
     }
 
-    public void setProduct_image(String product_image) {
-        this.product_image = product_image;
+    public void setOrderItems(Set<Orderitem> orderItems) {
+        this.orderItems = orderItems;
     }
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "products")
+    public Set<Cartitem> getCartItems() {
+        return this.cartItems;
+    }
+
+    public void setCartItems(Set<Cartitem> cartitemses) {
+        this.cartItems = cartitemses;
+    }
+
+
 }
+
+

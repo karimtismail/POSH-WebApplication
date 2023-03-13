@@ -24,24 +24,35 @@
             <version>6.0.0</version>
             <scope>provided</scope>
         </dependency>
+
         <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
-            <version>${junit.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-engine</artifactId>
-            <version>${junit.version}</version>
-            <scope>test</scope>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.30</version>
         </dependency>
 
+        <dependency>
+            <groupId>jakarta.persistence</groupId>
+            <artifactId>jakarta.persistence-api</artifactId>
+            <version>3.1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate.orm</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>6.1.7.Final</version>
+        </dependency>
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
             <version>2.10.1</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.14.2</version>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -57,6 +68,16 @@
             </plugin>
 
             <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.1.0</version>
+                <configuration>
+                  <mainClass>com.posh.App</mainClass>
+                  <cleanupDaemonThreads>false</cleanupDaemonThreads>
+                </configuration>
+              </plugin>
+
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
                 <version>3.3.0</version>
@@ -70,12 +91,45 @@
                 <artifactId>tomcat7-maven-plugin</artifactId>
                 <version>2.2</version>
                 <configuration>
-                    <username>admin</username>
-                    <password>admin</password>
+                    <username></username>
+                    <password></password>
                     <url>http://localhost:8080/manager/text</url>
                     <path>/posh</path>
                 </configuration>
             </plugin>
+
+<!--            <plugin>-->
+<!--                <groupId>org.hibernate.tool</groupId>-->
+<!--                <artifactId>hibernate-tools-maven</artifactId>-->
+<!--                <version>6.1.7.Final</version>-->
+<!--                <dependencies>-->
+<!--                  &lt;!&ndash; https://mvnrepository.com/artifact/org.hibernate/hibernate-tools-->
+<!--        &ndash;&gt;-->
+<!--                  <dependency>-->
+<!--                    <groupId>org.hibernate.tool</groupId>-->
+<!--                    <artifactId>hibernate-tools-orm</artifactId>-->
+<!--                    <version>6.1.7.Final</version>-->
+<!--                  </dependency>-->
+<!--  -->
+<!--                  <dependency>-->
+<!--                    <groupId>mysql</groupId>-->
+<!--                    <artifactId>mysql-connector-java</artifactId>-->
+<!--                    <version>8.0.30</version>-->
+<!--                  </dependency>-->
+<!--                </dependencies>-->
+<!--                <executions>-->
+<!--                  <execution>-->
+<!--                    <id>entity-generation</id>-->
+<!--                    <phase>generate-sources</phase>-->
+<!--                    <goals>-->
+<!--                      <goal>hbm2java</goal>-->
+<!--                    </goals>-->
+<!--                    <configuration>-->
+<!--                      <ejb3>true</ejb3>-->
+<!--                    </configuration>-->
+<!--                  </execution>-->
+<!--                </executions>-->
+<!--              </plugin>-->
         </plugins>
     </build>
 </project>
