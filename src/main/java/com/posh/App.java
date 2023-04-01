@@ -1,28 +1,21 @@
 package com.posh;
 
-import java.io.*;
+import com.google.gson.Gson;
+import com.posh.persistance.repository.implementations.OrderDao;
+import com.posh.service.CartService;
+import com.posh.utils.enums.CategotyEnum;
+import jakarta.xml.bind.JAXBException;
 
-import jakarta.servlet.http.*;
-import jakarta.servlet.annotation.*;
+import java.io.IOException;
+//@WebServlet(name = "helloServlet", value = "/hello-servlet")
 
-@WebServlet(name = "helloServlet", value = "/hello-servlet")
-public class App extends HttpServlet {
-    private String message;
+public class App {
 
-    public void init() {
-        message = "Hello World!";
+    public static void main(String[] args) throws JAXBException, IOException {
+        System.out.println(CategotyEnum.valueOf("OIL").getName());
+        System.out.println(CategotyEnum.valueOf("OIL").getId());
+
     }
 
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.setContentType("text/html");
 
-        // Hello
-        PrintWriter out = response.getWriter();
-        out.println("<html><body>");
-        out.println("<h1>" + message + "</h1>");
-        out.println("</body></html>");
-    }
-
-    public void destroy() {
-    }
 }
